@@ -5,6 +5,8 @@
 
 		MVI	A,01H
 		OUT	20H			; Initialize 8155
+;		LXI	SP,17FFH	; Initialize Stack Pointer End of RAM
+		LXI	SP,20FFH	; Initialize Stack Pointer End of RAM 8155
 		
 LOOP:	MVI	 A,01H
 		OUT	21H
@@ -27,8 +29,8 @@ L:		DCX B			; Decrement inner counter
 		DCR D			; Decrement outer counter
 		JNZ ST			; If not exhausted go again for outer loop
 		POP PSW			; Restore PSW
-		POP B			; Restore B
 		POP D
+		POP B			; Restore B
 		RET
 		
 		
